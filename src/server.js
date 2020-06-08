@@ -6,8 +6,6 @@ const cors=require('cors');
 const notFound=require('./middleeware/404');
 const serverErr=require('./middleeware/500');
 const router=require('./auth/router');
-// const users=require('./auth/models/users-model');
-// const basicAuth=require('./auth/middleware/Basic');
 
 
 

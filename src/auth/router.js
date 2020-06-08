@@ -23,6 +23,13 @@ router.post('/signin',basicAuth,(req,res) => {
   res.status(200).json({'token':req.token,'user':req.data});
 });
 
+router.get('/users', async (req,res)=>{
+  let users = await mainSchema.findAll();
+  res.status(200).json({users});   
+});
+
+module.exports=router;
+
 
 
 

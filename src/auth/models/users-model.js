@@ -16,17 +16,20 @@ const Auth=mongoose.Schema({
 
 
 
-Auth.authenticateBasic = async function (user, pass) {
-  const valid = await bcrypt.compare(pass, Auth[user].password);
-  return valid ? Auth[user] : Promise.reject('wrong password');
+Auth.statics.authenticate=function(username, pass){
+  return this.find({ username })
+    .then(user =>{
+      let returnValue = bcrypt.compare(pass,user[0].password) ? user[0] :null;
+      return returnValue;
+    });
 };
 
-Auth.generateToken = function (user) {
-  const token = jwt.sign({ username: user.username }, SECRET);
+Auth.statics.generateToken = function (user) {
+  let token = jwt.sign({ username: user.username }, process.env.SECRET);
   return token;
 };
 
-Auth.findAll= async function(){
+Auth.statics.findAll= async function(){
   return await this.find({});
 };
   
