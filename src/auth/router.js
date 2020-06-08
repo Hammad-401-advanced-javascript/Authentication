@@ -2,7 +2,8 @@
 
 const express=require('express');
 const router=express.Router();
-
+const app = express();
+const oauth=require('../auth/middleware/OAuth');
 const mainSchema = require('./models/users-model');
 const basicAuth=require('./middleware/Basic');
 
@@ -26,6 +27,10 @@ router.post('/signin',basicAuth,(req,res) => {
 router.get('/users', async (req,res)=>{
   let users = await mainSchema.findAll();
   res.status(200).json({users});   
+});
+
+app.get('/oauth', oauth, (req, res) => {
+  res.json({ token: req.token });
 });
 
 module.exports=router;
