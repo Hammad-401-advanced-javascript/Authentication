@@ -8,14 +8,15 @@ const basicAuth=require('./middleware/Basic');
 
 
 
-router.post('./signup', async(req,res,next)=>{
+router.post('/signup', async(req,res,next)=>{
   try{
     let users=new mainSchema(req.body);
     let result = await users.save();
-    let token = mainSchema.geneToken(result);
+    let token = mainSchema.generateToken(result);
+    // console.log('see the token',token)
     res.status(200).send(token);
   } catch (e){
-    next('we have your data');
+    next('we dont have your data');
   }
 });
 
