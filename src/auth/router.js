@@ -13,7 +13,7 @@ router.post('/signup', async(req,res,next)=>{
   try{
     let users=new mainSchema(req.body);
     let result = await users.save();
-    let token = mainSchema.geneToken(result);
+    let token = mainSchema.generateToken(result);
     console.log('show token',token);
     res.status(200).send(token);
   } catch (e){
