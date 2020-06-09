@@ -4,10 +4,10 @@ const URL = 'https://github.com/login/oauth/authorize';
 // need query string
 const options={
   client_id:'55dc4a6462736d3ca10d',
+  redirect:'http://localhost:4000/oauth',
   scope:'read:user',
-  state:'401 demo ask for user consent',
+  state:'Lab class-12',
 };
-
 // conserting the obj to string and formatting theresulting string
 const queryString=Object.keys(options)
   .map((key)=>{
@@ -22,3 +22,4 @@ console.log('Query', queryString);
 const authUrl=`${URL}?${queryString}`;
 const link = document.getElementById('oauth');
 link.setAttribute('href',authUrl);
+

@@ -5,7 +5,9 @@ const morgan=require('morgan');
 const cors=require('cors');
 const notFound=require('./middleeware/404');
 const serverErr=require('./middleeware/500');
+const extra=require('./extra-routes');
 const router=require('./auth/router');
+
 
 
 
@@ -17,6 +19,7 @@ app.use(cors());
 app.get('/',(req,res)=>{
   res.status(200).send('Welcome to Authentication part');
 });
+app.use('/secret',extra);
 
 
 app.use(router);
