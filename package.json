@@ -6,7 +6,6 @@
   "scripts": {
     "test": "jest --coverage --verbose",
     "lint": "eslint '**/*.js'"
-
   },
   "repository": {
     "type": "git",
@@ -30,6 +29,7 @@
     "lint": "^0.7.0",
     "mongoose": "^5.9.18",
     "morgan": "^1.10.0",
+    "superagent": "^5.2.2",
     "supergoose": "^0.2.6"
   }
 }

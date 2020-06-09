@@ -1,4 +1,4 @@
-# LAB - Class 11
+# LAB - Class 112
 
 ## Project: Authentication
 
@@ -15,12 +15,17 @@
 * PORT
 * MONGODB_URI 
 * SECRET 
+* CLIENT_ID
+* CLIENT_SECRET
+* API_SERVER
 
 #### How to initialize/run your application 
 * `npm start`
 * EndPoint: `/users` 
 * EndPoint: `/signin` 
 * EndPoint: `/signup` 
+* EndPoint: `/oauth` 
+
 
 #### How to use your library 
 #### Tests
@@ -29,4 +34,4 @@
 
 #### UML
 
-![UML Diagram]()
+![UML Diagram](./assets/lab12.jpg)
