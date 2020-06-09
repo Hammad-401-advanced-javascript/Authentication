@@ -32,7 +32,10 @@ Auth.statics.generateToken = function (user) {
 Auth.statics.findAll= async function(){
   return await this.find({});
 };
-  
+
+Auth.statics.findTheUser=async function(username){
+  return await this.find({username});
+}  
 module.exports = mongoose.model('Auth',Auth);
 
 

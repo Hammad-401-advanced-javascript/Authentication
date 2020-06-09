@@ -2,7 +2,7 @@
 
 const express=require('express');
 const router=express.Router();
-const app = express();
+// const app = express();
 const oauth=require('../auth/middleware/OAuth');
 const mainSchema = require('./models/users-model');
 const basicAuth=require('./middleware/Basic');
@@ -29,8 +29,8 @@ router.get('/users', async (req,res)=>{
   res.status(200).json({users});   
 });
 
-app.get('/oauth', oauth, (req, res) => {
-  res.json({ token: req.token });
+router.get('/oauth', oauth, (req, res) => {
+  res.json({ token: req.token ,'user':req.user});
 });
 
 module.exports=router;
