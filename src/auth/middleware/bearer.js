@@ -10,7 +10,7 @@ module.exports=(req,res,next)=>{
     if(auth === 'Bearer'){
       console.log('Token',token);
       users
-        .authorization(token)
+        .authenticateToken(token)
         .then((validUser)=>{
           req.user= validUser;
           next();

@@ -32,8 +32,11 @@ router.get('/users', async (req,res)=>{
 });
 
 router.get('/oauth', oauth, (req, res) => {
+  console.log('show oauth');
+
   res.json({ token: req.token ,'user':req.user});
 });
+
 
 module.exports=router;
 

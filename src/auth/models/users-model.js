@@ -38,14 +38,14 @@ Auth.statics.findTheUser=async function(username){
   return await this.find({username});
 };
 
-Auth.statics.authenticateToken=async function(token,name){
+Auth.statics.authenticateToken=async function(token){
   try{
     const tokenObject= await jwt.verify(token,SECRET);
-    if(name.username){
-      return Promise.resolve(tokenObject);
-    } else{
-      return Promise.reject('user is not found');
-    }
+    // if(name.username){
+    return Promise.resolve(tokenObject);
+    // } else {
+    // return Promise.reject('user is not found');
+    // }
   }catch (e) {
     return Promise.reject(e.message);
   }

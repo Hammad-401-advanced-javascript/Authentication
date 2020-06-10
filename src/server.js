@@ -16,9 +16,9 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors());
 
-app.get('/',(req,res)=>{
-  res.status(200).send('Welcome to Authentication part');
-});
+app.use(express.static('./public'));
+
+
 app.use('/secret',extra);
 
 

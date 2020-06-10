@@ -38,7 +38,7 @@ module.exports=async(req,res,next)=>{
 
   // after the popup send the code to github for token
   async function exchangeCodeForToken(code){
-    const tokenRespnse= await (await superagent.post(tokenServerUrl)).setEncoding({
+    const tokenRespnse= await (await superagent.post(tokenServerUrl)).send({
       code:code,
       client_id: CLIENT_ID,
       client_secret: CLIENT_SECRET,
