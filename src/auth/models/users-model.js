@@ -39,16 +39,19 @@ Auth.statics.findTheUser=async function(username){
 };
 
 Auth.statics.authenticateToken=async function(token){
-  try{
-    const tokenObject= await jwt.verify(token,SECRET);
-    // if(name.username){
-    return Promise.resolve(tokenObject);
-    // } else {
-    // return Promise.reject('user is not found');
-    // }
-  }catch (e) {
-    return Promise.reject(e.message);
-  }
+  
+  return jwt.verify(token,SECRET,function(err,solve){
+
+    if(err){
+      return Promise.reject(err);
+    }
+    if(solve.username){
+      return Promise.resolve(solve);
+    }else{
+      return Promise.reject();
+    }
+  });
+   
 };
 
 module.exports = mongoose.model('Auth',Auth);

@@ -23,6 +23,8 @@ router.post('/signup', async(req,res,next)=>{
 
 router.post('/signin',basicAuth,(req,res) => {
   // console.log('show signin');
+  let token = mainSchema.generateToken(req.data);
+  res.cookie('token', token);
   res.status(200).json({'token':req.token,'user':req.data});
 });
 

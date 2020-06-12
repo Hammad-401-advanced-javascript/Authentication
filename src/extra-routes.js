@@ -1,6 +1,5 @@
 'use strict';
 
-const express=require('express');
 const router=require('./auth/router');
 const bearerMiddleware=require('./auth/middleware/bearer');
 
