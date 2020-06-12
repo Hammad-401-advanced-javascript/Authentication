@@ -76,7 +76,7 @@ Auth.statics.can = async function(permission){
     }
   }catch (e) {
     return Promise.reject(e.message);
-}
+  }
 };
 module.exports = mongoose.model('Auth',Auth);
 

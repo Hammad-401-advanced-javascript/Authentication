@@ -68,7 +68,7 @@ module.exports=async(req,res,next)=>{
     };
     //   const user = await users.save(userRecord);
     //   const token = users.generateToken(user);
-    //   return [user, token];
+      // return [user, token];
   }
 
 
