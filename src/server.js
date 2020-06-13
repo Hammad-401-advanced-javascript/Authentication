@@ -7,9 +7,12 @@ const notFound=require('./middleeware/404');
 const serverErr=require('./middleeware/500');
 const extra=require('./extra-routes');
 const router=require('./auth/router');
+const usersModel = require('./auth/models/users-model');
 
 
-
+router.get('/', (req,res)=>{
+  usersModel.get().then((data)=>res.json(data));
+});
 
 const app=express();
 app.use(express.json());

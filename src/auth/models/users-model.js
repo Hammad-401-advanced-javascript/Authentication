@@ -2,6 +2,7 @@
 const bcrypt=require('bcrypt');
 const mongoose=require('mongoose');
 const jwt = require('jsonwebtoken');
+// const roles=require('./role-model');
 require('dotenv').config;
 
 const SECRET = process.env.SECRET || 'mysecret';
@@ -9,14 +10,20 @@ const SECRET = process.env.SECRET || 'mysecret';
 const Auth=mongoose.Schema({
   username:{type:String,require:true},
   password:{type:Number,require:true},
-  role:{type:String,
-    require:true,
+  role:{
+    type:String,
     default:'user',
     num:['user','editor','admin'],
-  },
-});
+  }});
+
+// Auth.pre('find',function(){
+//   this.populate('acl');
+// });
 
 
+// Auth.post('save',async function(){
+//   await this.populate('acl').execPopulate();
+// });
 
 
 let roles = {
@@ -35,8 +42,8 @@ Auth.statics.authenticate=function(username, pass){
 };
 
 Auth.statics.generateToken = function (user) {
-  let userData={username: user.username,  roles:user.role };
-  let token = jwt.sign(userData,process.env.SECRET,{expiresIn:60*15});
+  let token = jwt.sign({username: user.username,capabilities: roles[user.role]}, SECRET,{expiresIn:60*15});
+  console.log('token',token);
   return token;
 };
 
@@ -48,35 +55,22 @@ Auth.statics.findTheUser=async function(username){
   return await this.find({username});
 };
 
+
+
 Auth.statics.authenticateToken=async function(token){
-  try{
-    const tokenObject= await jwt.verify(token,SECRET);
-    // if(name.username){
-    return Promise.resolve(tokenObject);
-    // } else {
-    // return Promise.reject('user is not found');
-    // }
-  }catch (e) {
-    return Promise.reject(e.message);
-  }
-};
+  
+  return jwt.verify(token,SECRET,function(err,solve){
 
-
-Auth.statics.can = async function(permission){
-  try {
-    let check=permission.role.num;
-    if(typeof check =='user'){
-      return roles.user;
-    } else if (typeof check =='editor'){
-      return roles.editor;
-
-    }else if ( typeof check =='admin'){
-      return roles.admin;
-
+    if(err){
+      return Promise.reject(err);
     }
-  }catch (e) {
-    return Promise.reject(e.message);
-  }
+    if(solve.username){
+      return Promise.resolve(solve);
+    }else{
+      return Promise.reject();
+    }
+  });
+   
 };
 module.exports = mongoose.model('Auth',Auth);
 

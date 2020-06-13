@@ -14,19 +14,19 @@ router.get('/secret', bearerMiddleware, (req,res) => {
 } );
 
 
-app.get('/read',bearerAuth,acl('create'),(req,res)=>{
-  res.send('you did the create part');
+app.get('/read',bearerAuth,acl('read'),(req,res)=>{
+  res.send('you did the read part');
 });
 
 app.post('/add',bearerAuth,acl('create'),(req,res)=>{
   res.send('you did the create part');
 });
 
-app.put('/update',bearerAuth,acl('create'),(req,res)=>{
+app.put('/update',bearerAuth,acl('update'),(req,res)=>{
   res.send('you did the update part');
 });
 
-app.delete('/delete',bearerAuth,acl('create'),(req,res)=>{
+app.delete('/delete',bearerAuth,acl('delete'),(req,res)=>{
   res.send('you did the delete part');
 });
 
