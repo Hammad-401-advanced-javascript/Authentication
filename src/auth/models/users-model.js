@@ -25,11 +25,15 @@ const Auth=mongoose.Schema({
 //   await this.populate('acl').execPopulate();
 // });
 
+Auth.statics.authenticateRole=function(user,capability){
 
-let roles = {
-  user: ['read'],
-  editor: ['read', 'create', 'update'],
-  admin: ['read', 'create', 'update', 'delete'],
+  let roles = {
+    user: ['read'],
+    editor: ['read', 'create', 'update'],
+    admin: ['read', 'create', 'update', 'delete'],
+  };
+
+  return !!roles[user.capabilities].includes(capability);
 };
  
 
@@ -42,7 +46,7 @@ Auth.statics.authenticate=function(username, pass){
 };
 
 Auth.statics.generateToken = function (user) {
-  let token = jwt.sign({username: user.username,capabilities: roles[user.role]}, SECRET,{expiresIn:60*15});
+  let token = jwt.sign({username: user.username,capabilities: user.role}, SECRET,{expiresIn:60*15});
   console.log('token',token);
   return token;
 };
