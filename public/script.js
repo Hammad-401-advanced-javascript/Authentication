@@ -3,7 +3,7 @@ const URL = 'https://github.com/login/oauth/authorize';
 
 // need query string
 const options={
-  client_id:'55dc4a6462736d3ca10d',
+  client_id:'7d4f153cec56a80adbbc',
   redirect:'http://localhost:4000/oauth',
   scope:'read:user',
 };
