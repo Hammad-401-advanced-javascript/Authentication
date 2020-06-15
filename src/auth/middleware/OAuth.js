@@ -38,7 +38,7 @@ module.exports=async(req,res,next)=>{
 
   // after the popup send the code to github for token
   async function exchangeCodeForToken(code){
-    const tokenRespnse= await (await superagent.post(tokenServerUrl)).setEncoding({
+    const tokenRespnse= await (await superagent.post(tokenServerUrl)).send({
       code:code,
       client_id: CLIENT_ID,
       client_secret: CLIENT_SECRET,
@@ -66,10 +66,17 @@ module.exports=async(req,res,next)=>{
       username : remoteUser.login,
       password: 'anysting', // Math.random(1000), // this can be anything just because its required in the db
     };
-    //   const user = await users.save(userRecord);
-    //   const token = users.generateToken(user);
-    //   return [user, token];
+    let savedUser = null;
+    try {
+      let users = new users(userRecord);
+      savedUser = await users.save();
+    } catch (e) {
+      savedUser = await  users.findOneByUser(userRecord.username);
+    }
+  
+    let myServerToken = users.generateToken(userRecord);
+    return [savedUser, myServerToken]; 
+  
   }
-
 
 };
