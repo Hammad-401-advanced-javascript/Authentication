@@ -1,37 +1,42 @@
-# LAB - Class 112
+# LAB - Class 14
 
 ## Project: Authentication
 
 ### Author: Hammad Ali
 
 
-## Modules
-### server.js
-### 404.js
-### 500.js
+### Modules
+* server.js
+* 404.js
+* 500.js
+* extra-route
 
 ### Setup
-#### .env requirements
-* PORT
+* .env requirements
+* PORT - Port Number
 * MONGODB_URI 
-* SECRET 
-* CLIENT_ID
+* SECRET
+* CLIENT_ID 
 * CLIENT_SECRET
-* API_SERVER
 
-#### How to initialize/run your application 
-* `npm start`
-* EndPoint: `/users` 
-* EndPoint: `/signin` 
-* EndPoint: `/signup` 
-* EndPoint: `/oauth` 
+### How to initialize/run your application
+* npm start
+* EndPoint: /
+* EndPoint: /login
+* EndPoint: /users
+* EndPoint: /secret 
+* EndPoint: /signin
+* EndPoint: /signup
+* EndPoint: /read
+* EndPoint: /add
+* EndPoint: /change
+* EndPoint: /remove
 
+### How to use your library
+* Tests
+* Lint test: npm run lint
+* unit test: npm test
 
-#### How to use your library 
-#### Tests
-- Lint test: `npm run lint`
-- unit test: `npm test`
+### UML
 
-#### UML
-
-![UML Diagram](./assets/lab12.jpg)
+![image](./assets/)
