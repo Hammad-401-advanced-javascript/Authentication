@@ -22,7 +22,6 @@
 ### How to initialize/run your application
 * npm start
 * EndPoint: /
-* EndPoint: /login
 * EndPoint: /users
 * EndPoint: /secret 
 * EndPoint: /signin
@@ -39,4 +38,4 @@
 
 ### UML
 
-![image](./assets/)
+![image](./assets/class-14.jpg)

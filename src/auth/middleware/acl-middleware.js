@@ -1,15 +1,20 @@
-module.exports=(capability)=>{
+const schema = require('../models/users-model');
+
+module.exports = (capability) => {
 
 
 
-  return (req,res,next)=>{
-    try{
-      if(req.user.capabilities.includes(capability)){
+  return (req, res, next) => {
+    try {
+      if (schema.authenticateRole(req, capability)) {
+
         next();
-      } else {
+      }
+
+      else {
         next('Access Denied');
       }
-    } catch(e){
+    } catch (e) {
       next('invalid login');
     }
   };
