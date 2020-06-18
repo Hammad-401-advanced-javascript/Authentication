@@ -24,7 +24,7 @@ describe('testing the server', () => {
   });
 
   it('POST  /signup ', async () => {
-    let test = { 'username': 'israa', 'password': '1234' };
+    let test = { 'username': 'hammad', 'password': '1234' };
     mockRequest
       .post('/signup')
       .send(test)
